@@ -40,7 +40,7 @@ namespace Geco.Tests.Database.Model
 
         public Customer()
         {
-            this.SalesOrderHeaders = new List<SalesOrderHeader>();
+            SalesOrderHeaders = new List<SalesOrderHeader>();
         }
     }
 }

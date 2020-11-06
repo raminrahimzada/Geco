@@ -35,11 +35,11 @@ namespace Geco.Tests.Database.Model
 
         public BusinessEntity()
         {
-            this.BusinessEntityAddresses = new List<BusinessEntityAddress>();
-            this.BusinessEntityContacts = new List<BusinessEntityContact>();
-            this.People = new List<Person>();
-            this.Stores = new List<Store>();
-            this.Vendors = new List<Vendor>();
+            BusinessEntityAddresses = new List<BusinessEntityAddress>();
+            BusinessEntityContacts = new List<BusinessEntityContact>();
+            People = new List<Person>();
+            Stores = new List<Store>();
+            Vendors = new List<Vendor>();
         }
     }
 }

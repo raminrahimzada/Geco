@@ -39,7 +39,7 @@ namespace Geco.Tests.Database.Model
 
         public CurrencyRate()
         {
-            this.SalesOrderHeaders = new List<SalesOrderHeader>();
+            SalesOrderHeaders = new List<SalesOrderHeader>();
         }
     }
 }

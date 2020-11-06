@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data.Common;
 using System.Diagnostics;
-using System.Linq;
 using Geco.Common.SimpleMetadata;
+using Geco.Common.Util;
 
 namespace Geco.Common.MetadataProviders
 {
@@ -22,7 +21,7 @@ namespace Geco.Common.MetadataProviders
         {
             var sw = new Stopwatch();
             sw.Start();
-            this.ConnectionName = connectionName;
+            ConnectionName = connectionName;
             DatabaseMetadata db;
             using (Connection = CreateConnection())
             {
@@ -92,7 +91,7 @@ namespace Geco.Common.MetadataProviders
 
         public DatabaseMetadata GetMetadata(string connectionName)
         {
-            return metadata ??= LoadMetadata(connectionName);
+            return metadata = metadata ?? LoadMetadata(connectionName);
         }
 
         public void Reload()
@@ -119,7 +118,7 @@ namespace Geco.Common.MetadataProviders
             {
                 using (var rdr = cmd.ExecuteReader())
                 {
-                    foreach (var value in QueryUtil.MaterializeReader<T>(rdr))
+                    foreach (var value in rdr.MaterializeReader<T>())
                     {
                         yield return value;
                     }

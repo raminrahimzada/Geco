@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Geco.Common.SimpleMetadata
+namespace Packaging.Template.Content.Tools.Geco.Common.SimpleMetadata
 {
     [DebuggerDisplay("[{Name}] IsUnique:{IsUnique} IsClustered:{IsClustered} Columns:{Columns} IncludedColumns:{IncludedColumns}")]
     public class Index : MetadataItem

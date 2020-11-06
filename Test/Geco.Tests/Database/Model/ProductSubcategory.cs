@@ -36,7 +36,7 @@ namespace Geco.Tests.Database.Model
 
         public ProductSubcategory()
         {
-            this.Products = new List<Product>();
+            Products = new List<Product>();
         }
     }
 }

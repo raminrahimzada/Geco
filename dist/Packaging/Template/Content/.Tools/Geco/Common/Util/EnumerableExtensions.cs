@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace Geco.Common
+namespace Geco.Common.Util
 {
     /// <summary>
     /// Extensions class with enumerable extensions targeted at code generation

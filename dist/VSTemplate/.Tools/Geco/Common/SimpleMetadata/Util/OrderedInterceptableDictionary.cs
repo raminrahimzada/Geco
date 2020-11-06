@@ -23,7 +23,7 @@ namespace Geco.Common.SimpleMetadata.Util
 
         public OrderedInterceptableDictionary(IEqualityComparer<TKey> comparer, Action<TElement> onAdd, Action<TElement> onRemoved)
         {
-            this.onAdded = onAdd;
+            onAdded = onAdd;
             keyOrder = new Dictionary<TKey, int>(comparer ?? EqualityComparer<TKey>.Default);
             elements = new SortedDictionary<int, (TKey, TElement)>();
             this.onRemoved = onRemoved;
@@ -97,9 +97,9 @@ namespace Geco.Common.SimpleMetadata.Util
 
         public IEnumerator<KeyValuePair<TKey, TElement>> GetEnumerator()
         {
-            foreach (var value in elements.Values)
+            foreach (var (key, element) in elements.Values)
             {
-                yield return new KeyValuePair<TKey, TElement>(value.Key, value.Element);
+                yield return new KeyValuePair<TKey, TElement>(key, element);
             }
         }
 
@@ -110,12 +110,14 @@ namespace Geco.Common.SimpleMetadata.Util
 
         void ICollection<KeyValuePair<TKey, TElement>>.Add(KeyValuePair<TKey, TElement> item)
         {
-            Add(item.Key, item.Value);
+            var (key, value) = item;
+            Add(key, value);
         }
 
         bool ICollection<KeyValuePair<TKey, TElement>>.Contains(KeyValuePair<TKey, TElement> item)
         {
-            return keyOrder.ContainsKey(item.Key) && Object.Equals(elements[keyOrder[item.Key]].Element, item.Value);
+            var (key, value) = item;
+            return keyOrder.ContainsKey(key) && Equals(elements[keyOrder[key]].Element, value);
         }
 
         void ICollection<KeyValuePair<TKey, TElement>>.CopyTo(KeyValuePair<TKey, TElement>[] array, int arrayIndex)
@@ -125,7 +127,8 @@ namespace Geco.Common.SimpleMetadata.Util
 
         bool ICollection<KeyValuePair<TKey, TElement>>.Remove(KeyValuePair<TKey, TElement> item)
         {
-            return ContainsKey(item.Key) && GetElement(item.Key).Equals(item.Value) && Remove(item.Key);
+            var (key, value) = item;
+            return ContainsKey(key) && GetElement(key).Equals(value) && Remove(key);
         }
 
         IEnumerator IEnumerable.GetEnumerator()

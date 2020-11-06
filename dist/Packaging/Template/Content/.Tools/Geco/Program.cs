@@ -18,14 +18,16 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Geco.Common;
+using Geco.Common.Inflector;
 using Geco.Common.MetadataProviders.SqlServer;
 using Geco.Common.SimpleMetadata;
+using Geco.Common.Util;
 using Geco.Config;
 using Microsoft.Extensions.CommandLineUtils;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using static Geco.Common.ColorConsole;
+using static Geco.Common.Util.ColorConsole;
 using static System.ConsoleColor;
 
 namespace Geco
@@ -57,8 +59,7 @@ namespace Geco
             {
                 Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
 
-                var app = new CommandLineApplication();
-                app.Name = "Geco";
+                var app = new CommandLineApplication {Name = "Geco"};
                 app.HelpOption("-?|-h|--help");
 
                 app.Command("run", command =>
@@ -121,7 +122,7 @@ namespace Geco
                 WriteLine(($"{taskNr}. ", White), ($"{taskInfo.Item.Name}", Blue));
                 actions.Add(taskNr, () => RunTask(taskInfo.Item));
             }
-            WriteLine(("q. ", White), ("Quit", ConsoleColor.Yellow));
+            WriteLine(("q. ", White), ("Quit", Yellow));
             Write($">>", White);
 
             bool Choose()
@@ -132,7 +133,7 @@ namespace Geco
                     Console.WriteLine();
                     return false;
                 }
-                if (actions.TryGetValue(command, out var action))
+                if (actions.TryGetValue(command ?? throw new InvalidOperationException(), out var action))
                     action();
                 return true;
             }
@@ -160,7 +161,7 @@ namespace Geco
 
         private static void WriteLogo()
         {
-            var version = Assembly.GetEntryAssembly().GetName().Version;
+            var version = Assembly.GetEntryAssembly()?.GetName().Version;
             WriteLine($"********************************************************", Blue);
             WriteLine($"* ** Geco v{version} **                                  *", Blue);
             WriteLine($"*                                                      *", Blue);

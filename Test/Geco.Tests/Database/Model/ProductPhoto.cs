@@ -34,7 +34,7 @@ namespace Geco.Tests.Database.Model
 
         public ProductPhoto()
         {
-            this.ProductProductPhotos = new List<ProductProductPhoto>();
+            ProductProductPhotos = new List<ProductProductPhoto>();
         }
     }
 }

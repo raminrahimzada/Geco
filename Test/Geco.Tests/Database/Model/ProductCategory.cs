@@ -32,7 +32,7 @@ namespace Geco.Tests.Database.Model
 
         public ProductCategory()
         {
-            this.ProductSubcategories = new List<ProductSubcategory>();
+            ProductSubcategories = new List<ProductSubcategory>();
         }
     }
 }

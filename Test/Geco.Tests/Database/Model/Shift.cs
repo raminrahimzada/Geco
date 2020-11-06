@@ -33,7 +33,7 @@ namespace Geco.Tests.Database.Model
 
         public Shift()
         {
-            this.EmployeeDepartmentHistories = new List<EmployeeDepartmentHistory>();
+            EmployeeDepartmentHistories = new List<EmployeeDepartmentHistory>();
         }
     }
 }

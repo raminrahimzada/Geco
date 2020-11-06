@@ -44,10 +44,10 @@ namespace Geco.Tests.Database.Model
 
         public SalesPerson()
         {
-            this.SalesOrderHeaders = new List<SalesOrderHeader>();
-            this.SalesPersonQuotaHistories = new List<SalesPersonQuotaHistory>();
-            this.SalesTerritoryHistories = new List<SalesTerritoryHistory>();
-            this.Stores = new List<Store>();
+            SalesOrderHeaders = new List<SalesOrderHeader>();
+            SalesPersonQuotaHistories = new List<SalesPersonQuotaHistory>();
+            SalesTerritoryHistories = new List<SalesTerritoryHistory>();
+            Stores = new List<Store>();
         }
     }
 }

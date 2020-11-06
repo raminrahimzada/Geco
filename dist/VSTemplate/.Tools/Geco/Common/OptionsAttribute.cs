@@ -7,7 +7,7 @@ namespace Geco.Common
         public Type OptionType { get; }
         public OptionsAttribute(Type optionsType)
         {
-            this.OptionType = optionsType ?? throw new ArgumentNullException(nameof(optionsType));
+            OptionType = optionsType ?? throw new ArgumentNullException(nameof(optionsType));
         }
     }
 }

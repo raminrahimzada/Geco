@@ -45,11 +45,11 @@ namespace Geco.Tests.Database.Model
 
         public SalesTerritory()
         {
-            this.Customers = new List<Customer>();
-            this.SalesOrderHeaders = new List<SalesOrderHeader>();
-            this.SalesPeople = new List<SalesPerson>();
-            this.SalesTerritoryHistories = new List<SalesTerritoryHistory>();
-            this.StateProvinces = new List<StateProvince>();
+            Customers = new List<Customer>();
+            SalesOrderHeaders = new List<SalesOrderHeader>();
+            SalesPeople = new List<SalesPerson>();
+            SalesTerritoryHistories = new List<SalesTerritoryHistory>();
+            StateProvinces = new List<StateProvince>();
         }
     }
 }

@@ -2,11 +2,11 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
-namespace Geco.Common
+namespace Geco.Common.Util
 {
     public static class ColorConsole
     {
-        static readonly Regex splitRegex = new Regex(@"{\d+}", RegexOptions.Compiled);
+        static readonly Regex SplitRegex = new Regex(@"{\d+}", RegexOptions.Compiled);
 
         public static void WriteLine(FormattableString value, ConsoleColor color)
         {
@@ -21,7 +21,7 @@ namespace Geco.Common
 
         public static void WriteLine(params (string value, ConsoleColor color)[] values)
         {
-            var curentColor = Console.ForegroundColor;
+            var currentColor = Console.ForegroundColor;
             try
             {
                 foreach (var valueColorPair in values)
@@ -33,14 +33,14 @@ namespace Geco.Common
             }
             finally
             {
-                Console.ForegroundColor = curentColor;
+                Console.ForegroundColor = currentColor;
             }
         }
 
         public static void Write(FormattableString value, ConsoleColor color)
         {
 
-            var parts = splitRegex.Split(value.Format);
+            var parts = SplitRegex.Split(value.Format);
             for (int i = 0; i < parts.Length; i++)
             {
                 Write(parts[i], color);
@@ -59,7 +59,7 @@ namespace Geco.Common
         {
             if (string.IsNullOrEmpty(value))
                 return;
-            var curentColor = Console.ForegroundColor;
+            var currentColor = Console.ForegroundColor;
             try
             {
                 Console.ForegroundColor = color;
@@ -67,13 +67,13 @@ namespace Geco.Common
             }
             finally
             {
-                Console.ForegroundColor = curentColor;
+                Console.ForegroundColor = currentColor;
             }
         }
 
         public static void Write(params (string value, ConsoleColor color)[] values)
         {
-            var curentColor = Console.ForegroundColor;
+            var currentColor = Console.ForegroundColor;
             try
             {
                 foreach (var valueColorPair in values)
@@ -84,7 +84,7 @@ namespace Geco.Common
             }
             finally
             {
-                Console.ForegroundColor = curentColor;
+                Console.ForegroundColor = currentColor;
             }
         }
     }

@@ -50,11 +50,11 @@ namespace Geco.Tests.Database.Model
 
         public Employee()
         {
-            this.EmployeeDepartmentHistories = new List<EmployeeDepartmentHistory>();
-            this.EmployeePayHistories = new List<EmployeePayHistory>();
-            this.JobCandidates = new List<JobCandidate>();
-            this.PurchaseOrderHeaders = new List<PurchaseOrderHeader>();
-            this.SalesPeople = new List<SalesPerson>();
+            EmployeeDepartmentHistories = new List<EmployeeDepartmentHistory>();
+            EmployeePayHistories = new List<EmployeePayHistory>();
+            JobCandidates = new List<JobCandidate>();
+            PurchaseOrderHeaders = new List<PurchaseOrderHeader>();
+            SalesPeople = new List<SalesPerson>();
         }
     }
 }

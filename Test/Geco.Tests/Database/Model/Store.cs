@@ -38,7 +38,7 @@ namespace Geco.Tests.Database.Model
 
         public Store()
         {
-            this.Customers = new List<Customer>();
+            Customers = new List<Customer>();
         }
     }
 }

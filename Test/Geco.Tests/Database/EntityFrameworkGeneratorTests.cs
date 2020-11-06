@@ -55,7 +55,7 @@ namespace Geco.Tests.Database
                 .Where(p => p.PropertyType.IsGenericType && p.PropertyType.GetGenericTypeDefinition() == typeof(DbSet<>))
                 .Select(p => p);
 
-            var mi = this.GetType().GetMethod(nameof(Query), BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+            var mi = GetType().GetMethod(nameof(Query), BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
 
             foreach (var dbSet in dbSets)
             {

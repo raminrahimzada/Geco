@@ -31,7 +31,7 @@ namespace Geco.Tests.Database.Model
 
         public ScrapReason()
         {
-            this.WorkOrders = new List<WorkOrder>();
+            WorkOrders = new List<WorkOrder>();
         }
     }
 }

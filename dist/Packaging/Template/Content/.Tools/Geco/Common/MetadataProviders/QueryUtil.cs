@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using Geco.Common.SimpleMetadata;
+using Geco.Common.Util;
 
 namespace Geco.Common.MetadataProviders
 {
     public static class QueryUtil
     {
-        public static IEnumerable<T> MaterializeReader<T>(DbDataReader reader)
+        public static IEnumerable<T> MaterializeReader<T>(this DbDataReader reader)
             where T : IMetadataItem, new()
         {
             Func<DbDataReader, T> materialize = GetCachedMaterializeFunc<T>();
@@ -31,7 +31,7 @@ namespace Geco.Common.MetadataProviders
                 var r = Expression.Parameter(typeof(DbDataReader), "r");
                 var exceptProperties = new HashSet<string>(t.GetProperties().Select(p => p.Name).Where(p => nameof(IMetadataItem.Metadata) != p));
                 var lambda = Expression.Lambda(
-                    Expression.Call(typeof(QueryUtil).GetMethod(nameof(AddMetadata), BindingFlags.Static | BindingFlags.NonPublic).MakeGenericMethod(t),
+                    Expression.Call(typeof(QueryUtil).GetMethod(nameof(AddMetadata), BindingFlags.Static | BindingFlags.NonPublic)?.MakeGenericMethod(t) ?? throw new InvalidOperationException(),
                         Expression.MemberInit
                         (
                             Expression.New(t),
@@ -49,7 +49,9 @@ namespace Geco.Common.MetadataProviders
         private static Expression GetAssignmentExpression(ParameterExpression r, PropertyInfo p)
         {
             if (!p.CanWrite)
-                throw new InvalidOperationException($"Property: {p.Name} of type:{p.DeclaringType.FullName} is not writable property!");
+                if (p.DeclaringType != null)
+                    throw new InvalidOperationException(
+                        $"Property: {p.Name} of type:{p.DeclaringType.FullName} is not writable property!");
 
             return Expression.Call(ReadValueOrDefaultMethod.MakeGenericMethod(p.PropertyType), EnumerableExtensions.Yield<Expression>(r, Expression.Constant(p.Name)));
         }

@@ -46,7 +46,7 @@ namespace Geco.Tests.Database.Model
 
         public PurchaseOrderHeader()
         {
-            this.PurchaseOrderDetails = new List<PurchaseOrderDetail>();
+            PurchaseOrderDetails = new List<PurchaseOrderDetail>();
         }
     }
 }

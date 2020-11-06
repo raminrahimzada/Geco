@@ -42,7 +42,7 @@ namespace Geco.Tests.Database.Model
 
         public WorkOrder()
         {
-            this.WorkOrderRoutings = new List<WorkOrderRouting>();
+            WorkOrderRoutings = new List<WorkOrderRouting>();
         }
     }
 }

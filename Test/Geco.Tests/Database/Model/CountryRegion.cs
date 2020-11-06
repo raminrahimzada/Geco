@@ -33,9 +33,9 @@ namespace Geco.Tests.Database.Model
 
         public CountryRegion()
         {
-            this.CountryRegionCurrencies = new List<CountryRegionCurrency>();
-            this.SalesTerritories = new List<SalesTerritory>();
-            this.StateProvinces = new List<StateProvince>();
+            CountryRegionCurrencies = new List<CountryRegionCurrency>();
+            SalesTerritories = new List<SalesTerritory>();
+            StateProvinces = new List<StateProvince>();
         }
     }
 }

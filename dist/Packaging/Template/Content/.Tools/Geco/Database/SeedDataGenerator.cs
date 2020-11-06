@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Geco.Common;
+using Geco.Common.Inflector;
 using Geco.Common.SimpleMetadata;
+using Geco.Common.Util;
 using Microsoft.Extensions.Configuration;
 
 namespace Geco.Database
@@ -39,10 +41,10 @@ namespace Geco.Database
             }
 
             var tables = Db.Schemas.SelectMany(s => s.Tables)
-                .Where(t => (options.Tables.Any(n => Util.TableNameMaches(t, n))
-                || Util.TableNameMachesRegex(t, options.TablesRegex, true))
-                && !options.ExcludedTables.Any(n => Util.TableNameMaches(t, n))
-                && !Util.TableNameMachesRegex(t, options.ExcludedTablesRegex, false)).OrderBy(t => t.Schema.Name + "." + t.Name).ToArray();
+                .Where(t => (options.Tables.Any(n => Util.Util.TableNameMatches(t, n))
+                || Util.Util.TableNameMatchesRegex(t, options.TablesRegex, true))
+                && !options.ExcludedTables.Any(n => Util.Util.TableNameMatches(t, n))
+                && !Util.Util.TableNameMatchesRegex(t, options.ExcludedTablesRegex, false)).OrderBy(t => t.Schema.Name + "." + t.Name).ToArray();
             TopologicalSort(tables);
             GenerateSeedFile(options.OutputFileName, tables);
 
@@ -188,7 +190,7 @@ namespace Geco.Database
         private void TopologicalSort(IList<Table> tables)
         {
             bool sorted = false;
-            var comparer = new SeedDataGenerator.TopologicalComparer();
+            var comparer = new TopologicalComparer();
             var iterations = 0;
             while (!sorted)
             {

@@ -31,7 +31,7 @@ namespace Geco.Tests.Database.Model
 
         public ContactType()
         {
-            this.BusinessEntityContacts = new List<BusinessEntityContact>();
+            BusinessEntityContacts = new List<BusinessEntityContact>();
         }
     }
 }

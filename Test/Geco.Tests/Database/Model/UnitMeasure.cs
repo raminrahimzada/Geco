@@ -34,10 +34,10 @@ namespace Geco.Tests.Database.Model
 
         public UnitMeasure()
         {
-            this.BillOfMaterials = new List<BillOfMaterial>();
-            this.ProductsSizeUnitMeasureCode = new List<Product>();
-            this.ProductsWeightUnitMeasureCode = new List<Product>();
-            this.ProductVendors = new List<ProductVendor>();
+            BillOfMaterials = new List<BillOfMaterial>();
+            ProductsSizeUnitMeasureCode = new List<Product>();
+            ProductsWeightUnitMeasureCode = new List<Product>();
+            ProductVendors = new List<ProductVendor>();
         }
     }
 }

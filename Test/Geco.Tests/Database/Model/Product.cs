@@ -72,20 +72,20 @@ namespace Geco.Tests.Database.Model
 
         public Product()
         {
-            this.BillOfMaterialsComponent = new List<BillOfMaterial>();
-            this.BillOfMaterialsProductAssembly = new List<BillOfMaterial>();
-            this.ProductCostHistories = new List<ProductCostHistory>();
-            this.ProductDocuments = new List<ProductDocument>();
-            this.ProductInventories = new List<ProductInventory>();
-            this.ProductListPriceHistories = new List<ProductListPriceHistory>();
-            this.ProductProductPhotos = new List<ProductProductPhoto>();
-            this.ProductReviews = new List<ProductReview>();
-            this.ProductVendors = new List<ProductVendor>();
-            this.PurchaseOrderDetails = new List<PurchaseOrderDetail>();
-            this.ShoppingCartItems = new List<ShoppingCartItem>();
-            this.SpecialOfferProducts = new List<SpecialOfferProduct>();
-            this.TransactionHistories = new List<TransactionHistory>();
-            this.WorkOrders = new List<WorkOrder>();
+            BillOfMaterialsComponent = new List<BillOfMaterial>();
+            BillOfMaterialsProductAssembly = new List<BillOfMaterial>();
+            ProductCostHistories = new List<ProductCostHistory>();
+            ProductDocuments = new List<ProductDocument>();
+            ProductInventories = new List<ProductInventory>();
+            ProductListPriceHistories = new List<ProductListPriceHistory>();
+            ProductProductPhotos = new List<ProductProductPhoto>();
+            ProductReviews = new List<ProductReview>();
+            ProductVendors = new List<ProductVendor>();
+            PurchaseOrderDetails = new List<PurchaseOrderDetail>();
+            ShoppingCartItems = new List<ShoppingCartItem>();
+            SpecialOfferProducts = new List<SpecialOfferProduct>();
+            TransactionHistories = new List<TransactionHistory>();
+            WorkOrders = new List<WorkOrder>();
         }
     }
 }

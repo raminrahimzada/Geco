@@ -50,13 +50,13 @@ namespace Geco.Tests.Database.Model
 
         public Person()
         {
-            this.BusinessEntityContacts = new List<BusinessEntityContact>();
-            this.Customers = new List<Customer>();
-            this.EmailAddresses = new List<EmailAddress>();
-            this.Employees = new List<Employee>();
-            this.Passwords = new List<Password>();
-            this.PersonCreditCards = new List<PersonCreditCard>();
-            this.PersonPhones = new List<PersonPhone>();
+            BusinessEntityContacts = new List<BusinessEntityContact>();
+            Customers = new List<Customer>();
+            EmailAddresses = new List<EmailAddress>();
+            Employees = new List<Employee>();
+            Passwords = new List<Password>();
+            PersonCreditCards = new List<PersonCreditCard>();
+            PersonPhones = new List<PersonPhone>();
         }
     }
 }

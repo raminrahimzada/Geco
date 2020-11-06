@@ -1,6 +1,6 @@
 ﻿using Humanizer;
 
-namespace Geco.Common
+namespace Geco.Common.Inflector
 {
     public class HumanizerInflector : IInflector
     {

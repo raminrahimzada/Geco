@@ -34,8 +34,8 @@ namespace Geco.Tests.Database.Model
 
         public Location()
         {
-            this.ProductInventories = new List<ProductInventory>();
-            this.WorkOrderRoutings = new List<WorkOrderRouting>();
+            ProductInventories = new List<ProductInventory>();
+            WorkOrderRoutings = new List<WorkOrderRouting>();
         }
     }
 }

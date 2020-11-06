@@ -41,8 +41,8 @@ namespace Geco.Tests.Database.Model
 
         public StateProvince()
         {
-            this.Addresses = new List<Address>();
-            this.SalesTaxRates = new List<SalesTaxRate>();
+            Addresses = new List<Address>();
+            SalesTaxRates = new List<SalesTaxRate>();
         }
     }
 }

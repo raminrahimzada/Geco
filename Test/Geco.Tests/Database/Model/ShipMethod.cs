@@ -35,8 +35,8 @@ namespace Geco.Tests.Database.Model
 
         public ShipMethod()
         {
-            this.PurchaseOrderHeaders = new List<PurchaseOrderHeader>();
-            this.SalesOrderHeaders = new List<SalesOrderHeader>();
+            PurchaseOrderHeaders = new List<PurchaseOrderHeader>();
+            SalesOrderHeaders = new List<SalesOrderHeader>();
         }
     }
 }

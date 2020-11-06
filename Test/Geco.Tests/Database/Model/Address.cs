@@ -41,9 +41,9 @@ namespace Geco.Tests.Database.Model
 
         public Address()
         {
-            this.BusinessEntityAddresses = new List<BusinessEntityAddress>();
-            this.SalesOrderHeadersBillToAddress = new List<SalesOrderHeader>();
-            this.SalesOrderHeadersShipToAddress = new List<SalesOrderHeader>();
+            BusinessEntityAddresses = new List<BusinessEntityAddress>();
+            SalesOrderHeadersBillToAddress = new List<SalesOrderHeader>();
+            SalesOrderHeadersShipToAddress = new List<SalesOrderHeader>();
         }
     }
 }

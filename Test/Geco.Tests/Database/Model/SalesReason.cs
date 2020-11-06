@@ -32,7 +32,7 @@ namespace Geco.Tests.Database.Model
 
         public SalesReason()
         {
-            this.SalesOrderHeaderSalesReasons = new List<SalesOrderHeaderSalesReason>();
+            SalesOrderHeaderSalesReasons = new List<SalesOrderHeaderSalesReason>();
         }
     }
 }

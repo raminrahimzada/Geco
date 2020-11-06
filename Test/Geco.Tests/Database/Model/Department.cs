@@ -32,7 +32,7 @@ namespace Geco.Tests.Database.Model
 
         public Department()
         {
-            this.EmployeeDepartmentHistories = new List<EmployeeDepartmentHistory>();
+            EmployeeDepartmentHistories = new List<EmployeeDepartmentHistory>();
         }
     }
 }

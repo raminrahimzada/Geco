@@ -35,8 +35,8 @@ namespace Geco.Tests.Database.Model
 
         public CreditCard()
         {
-            this.PersonCreditCards = new List<PersonCreditCard>();
-            this.SalesOrderHeaders = new List<SalesOrderHeader>();
+            PersonCreditCards = new List<PersonCreditCard>();
+            SalesOrderHeaders = new List<SalesOrderHeader>();
         }
     }
 }

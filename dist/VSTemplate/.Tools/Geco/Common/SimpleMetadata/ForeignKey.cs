@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Geco.Common.SimpleMetadata
 {
     public class ForeignKey : MetadataItem
@@ -26,10 +24,10 @@ namespace Geco.Common.SimpleMetadata
 
         protected override void OnRemove()
         {
-            this.ParentTable.ForeignKeys.GetWritable().Remove(this.Name);
+            ParentTable.ForeignKeys.GetWritable().Remove(Name);
             foreach (var fromColumn in FromColumns)
                 fromColumn.ForeignKey = this;
-            this.TargetTable.ForeignKeys.GetWritable().Remove(this.Name);
+            TargetTable.ForeignKeys.GetWritable().Remove(Name);
         }
 
         private void OnFromColumnAdd(Column column)
@@ -39,7 +37,7 @@ namespace Geco.Common.SimpleMetadata
 
         private void OnToColumnsAdd(Column column)
         {
-            column.IncommingForeignKeys.Add(this);
+            column.IncomingForeignKeys.Add(this);
         }
     }
 

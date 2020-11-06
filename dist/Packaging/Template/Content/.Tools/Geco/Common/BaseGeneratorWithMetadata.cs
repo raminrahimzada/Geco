@@ -1,4 +1,5 @@
 ﻿using System;
+using Geco.Common.Inflector;
 using Geco.Common.SimpleMetadata;
 
 namespace Geco.Common
@@ -12,14 +13,14 @@ namespace Geco.Common
         protected BaseGeneratorWithMetadata(IMetadataProvider provider, IInflector inf, string connectionName)
             : base(inf)
         {
-            this.ConnectionName = connectionName;
+            ConnectionName = connectionName;
             Provider = provider;
         }
 
         protected void ReloadMetadata()
         {
             Provider.Reload();
-            this.Db.Freeze();
+            Db.Freeze();
         }
 
         protected virtual void OnMetadataLoaded(DatabaseMetadata db)
@@ -27,7 +28,7 @@ namespace Geco.Common
 
         }
 
-        protected string GetCharpTypeName(Type type)
+        protected string GetCSharpTypeName(Type type)
         {
             if (type == typeof(bool)) return "bool";
             if (type == typeof(byte)) return "byte";

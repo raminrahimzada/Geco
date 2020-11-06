@@ -36,9 +36,9 @@ namespace Geco.Tests.Database.Model
 
         public ProductModel()
         {
-            this.Products = new List<Product>();
-            this.ProductModelIllustrations = new List<ProductModelIllustration>();
-            this.ProductModelProductDescriptionCultures = new List<ProductModelProductDescriptionCulture>();
+            Products = new List<Product>();
+            ProductModelIllustrations = new List<ProductModelIllustration>();
+            ProductModelProductDescriptionCultures = new List<ProductModelProductDescriptionCulture>();
         }
     }
 }

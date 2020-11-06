@@ -67,7 +67,7 @@ namespace Geco.Common.SimpleMetadata
 
         IDictionary<string, TEntity> IMetadataCollectionWriteAccessor<TEntity>.GetWritable()
         {
-            return this.innerDictionary;
+            return innerDictionary;
         }
 
         public override string ToString()

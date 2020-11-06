@@ -40,8 +40,8 @@ namespace Geco.Tests.Database.Model
 
         public Vendor()
         {
-            this.ProductVendors = new List<ProductVendor>();
-            this.PurchaseOrderHeaders = new List<PurchaseOrderHeader>();
+            ProductVendors = new List<ProductVendor>();
+            PurchaseOrderHeaders = new List<PurchaseOrderHeader>();
         }
     }
 }

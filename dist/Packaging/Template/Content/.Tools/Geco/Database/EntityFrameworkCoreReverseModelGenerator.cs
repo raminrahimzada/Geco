@@ -4,8 +4,9 @@ using System.Linq;
 using System.Reflection;
 using Geco.Common;
 using Geco.Common.SimpleMetadata;
-using Microsoft.Extensions.Options;
 using System.Text;
+using Geco.Common.Inflector;
+using Geco.Common.Util;
 
 // ReSharper disable PossibleMultipleEnumeration
 
@@ -55,7 +56,7 @@ namespace Geco.Database
             using (BeginFile($"{options.ContextName ?? Inf.Pascalise(Db.Name)}.cs"))
             using (WriteHeader())
             {
-                W($"[GeneratedCode(\"Geco\", \"{Assembly.GetEntryAssembly().GetName().Version}\")]", options.GeneratedCodeAttribute);
+                W($"[GeneratedCode(\"Geco\", \"{Assembly.GetEntryAssembly()?.GetName().Version}\")]", options.GeneratedCodeAttribute);
                 W($"public partial class {options.ContextName ?? Inf.Pascalise(Db.Name)}Context : DbContext");
                 WI("{");
                 {
@@ -122,7 +123,7 @@ namespace Geco.Database
         private IDisposable WriteHeader(bool write = true)
         {
             if (!write)
-                return base.OnBlockEnd();
+                return OnBlockEnd();
 
             if (options.DisableCodeWarnings)
             {
@@ -147,7 +148,7 @@ namespace Geco.Database
             W($"namespace {options.Namespace}");
             WI("{");
 
-            return base.OnBlockEnd(() =>
+            return OnBlockEnd(() =>
             {
                 DW("}");
             });
@@ -155,7 +156,7 @@ namespace Geco.Database
 
         private void WriteDbSets()
         {
-            foreach (var table in Db.Schemas.SelectMany<Schema, Table>(s => s.Tables).OrderBy<Table, string>(t => t.Name))
+            foreach (var table in Db.Schemas.SelectMany(s => s.Tables).OrderBy(t => t.Name))
             {
                 var className = table.Metadata["Class"];
                 var plural = Inf.Pluralise(className);
@@ -172,11 +173,11 @@ namespace Geco.Database
             int i = 1;
             existingNames.Add(className);
 
-            W($"[GeneratedCode(\"Geco\", \"{Assembly.GetEntryAssembly().GetName().Version}\")]", options.GeneratedCodeAttribute);
+            W($"[GeneratedCode(\"Geco\", \"{Assembly.GetEntryAssembly()?.GetName().Version}\")]", options.GeneratedCodeAttribute);
             W($"public partial class {className}{(!String.IsNullOrWhiteSpace(classInterfaces) ? ": " + classInterfaces : "")}");
             WI("{");
             {
-                var keyProperties = table.Columns.Where<Column>(c => c.IsKey);
+                var keyProperties = table.Columns.Where(c => c.IsKey);
                 if (keyProperties.Any())
                 {
                     W("// Key Properties", options.GenerateComments);
@@ -191,7 +192,7 @@ namespace Geco.Database
                 }
 
 
-                var scalarProperties = table.Columns.Where<Column>(c => !c.IsKey);
+                var scalarProperties = table.Columns.Where(c => !c.IsKey);
                 if (scalarProperties.Any())
                 {
                     W("// Scalar Properties", options.GenerateComments);
@@ -286,7 +287,7 @@ namespace Geco.Database
 
         private void WriteModelBuilderConfigurations()
         {
-            foreach (var table in Db.Schemas.SelectMany<Schema, Table>(s => s.Tables).OrderBy(t => t.Name))
+            foreach (var table in Db.Schemas.SelectMany(s => s.Tables).OrderBy(t => t.Name))
             {
                 var className = table.Metadata["Class"];
                 W($"modelBuilder.Entity<{className}>(entity =>");
@@ -294,19 +295,19 @@ namespace Geco.Database
                 {
                     W($"entity.ToTable(\"{table.Name}\", \"{table.Schema.Name}\");");
 
-                    if (table.Columns.Count<Column>(c => c.IsKey) == 1)
+                    if (table.Columns.Count(c => c.IsKey) == 1)
                     {
-                        var col = table.Columns.First<Column>(c => c.IsKey);
+                        var col = table.Columns.First(c => c.IsKey);
                         W($"entity.HasKey(e => e.{col.Metadata["Property"]})");
                         SemiColon();
                     }
-                    else if (table.Columns.Count<Column>(c => c.IsKey) > 1)
+                    else if (table.Columns.Count(c => c.IsKey) > 1)
                     {
-                        W($"entity.HasKey(e => new {{ {string.Join(", ", table.Columns.Where<Column>(c => c.IsKey).Select(c => "e." + c.Metadata["Property"]))} }});");
+                        W($"entity.HasKey(e => new {{ {string.Join(", ", table.Columns.Where(c => c.IsKey).Select(c => "e." + c.Metadata["Property"]))} }});");
                     }
 
                     WI();
-                    foreach (var column in table.Columns.Where<Column>(c => c.ForeignKey == null))
+                    foreach (var column in table.Columns.Where(c => c.ForeignKey == null))
                     {
                         var propertyName = column.Metadata["Property"];
                         DW($"entity.Property(e => e.{propertyName})");
@@ -429,7 +430,7 @@ namespace Geco.Database
                 if (clrType == typeof(char))
                     return sysType;
 
-                sysType = GetCharpTypeName(clrType);
+                sysType = GetCSharpTypeName(clrType);
             }
             return sysType;
         }
@@ -489,10 +490,10 @@ namespace Geco.Database
 
             var tables = new HashSet<Table>(
                 Db.Schemas.SelectMany(s => s.Tables)
-                    .Where(t => (options.Tables.Any(n => Util.TableNameMaches(t, n)) ||
-                                 Util.TableNameMachesRegex(t, options.TablesRegex, true))
-                                && !options.ExcludedTables.Any(n => Util.TableNameMaches(t, n))
-                                && !Util.TableNameMachesRegex(t, options.ExcludedTablesRegex, false)));
+                    .Where(t => (options.Tables.Any(n => Util.Util.TableNameMatches(t, n)) ||
+                                 Util.Util.TableNameMatchesRegex(t, options.TablesRegex, true))
+                                && !options.ExcludedTables.Any(n => Util.Util.TableNameMatches(t, n))
+                                && !Util.Util.TableNameMatchesRegex(t, options.ExcludedTablesRegex, false)));
 
             foreach (var schema in Db.Schemas)
             foreach (var table in schema.Tables)

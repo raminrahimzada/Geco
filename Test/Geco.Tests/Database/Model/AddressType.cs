@@ -32,7 +32,7 @@ namespace Geco.Tests.Database.Model
 
         public AddressType()
         {
-            this.BusinessEntityAddresses = new List<BusinessEntityAddress>();
+            BusinessEntityAddresses = new List<BusinessEntityAddress>();
         }
     }
 }

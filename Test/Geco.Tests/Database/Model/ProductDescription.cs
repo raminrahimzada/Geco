@@ -32,7 +32,7 @@ namespace Geco.Tests.Database.Model
 
         public ProductDescription()
         {
-            this.ProductModelProductDescriptionCultures = new List<ProductModelProductDescriptionCulture>();
+            ProductModelProductDescriptionCultures = new List<ProductModelProductDescriptionCulture>();
         }
     }
 }

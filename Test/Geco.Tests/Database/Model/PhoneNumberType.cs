@@ -31,7 +31,7 @@ namespace Geco.Tests.Database.Model
 
         public PhoneNumberType()
         {
-            this.PersonPhones = new List<PersonPhone>();
+            PersonPhones = new List<PersonPhone>();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Geco.Tests.Database.Model
 
         public AdventureWorksContext(IConfigurationRoot configuration)
         {
-            this.Configuration = configuration;
+            Configuration = configuration;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

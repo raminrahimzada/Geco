@@ -39,7 +39,7 @@ namespace Geco.Tests.Database.Model
 
         public SpecialOffer()
         {
-            this.SpecialOfferProducts = new List<SpecialOfferProduct>();
+            SpecialOfferProducts = new List<SpecialOfferProduct>();
         }
     }
 }

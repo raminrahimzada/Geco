@@ -2,11 +2,11 @@
 using System.Text.RegularExpressions;
 using Geco.Common.SimpleMetadata;
 
-namespace Geco
+namespace Geco.Util
 {
     public class Util
     {
-        public static bool TableNameMachesRegex(Table table, string tablesRegex, bool onNull)
+        public static bool TableNameMatchesRegex(Table table, string tablesRegex, bool onNull)
         {
             if (String.IsNullOrWhiteSpace(tablesRegex))
                 return onNull;
@@ -19,7 +19,7 @@ namespace Geco
                 );
         }
 
-        public static bool TableNameMaches(Table table, string name)
+        public static bool TableNameMatches(Table table, string name)
         {
             return string.Equals(name, table.Name, StringComparison.OrdinalIgnoreCase) ||
                    string.Equals(name, $"[{table.Name}]", StringComparison.OrdinalIgnoreCase) ||

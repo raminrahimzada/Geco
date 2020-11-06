@@ -31,7 +31,7 @@ namespace Geco.Tests.Database.Model
 
         public Illustration()
         {
-            this.ProductModelIllustrations = new List<ProductModelIllustration>();
+            ProductModelIllustrations = new List<ProductModelIllustration>();
         }
     }
 }

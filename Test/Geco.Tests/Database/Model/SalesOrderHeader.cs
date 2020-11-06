@@ -65,8 +65,8 @@ namespace Geco.Tests.Database.Model
 
         public SalesOrderHeader()
         {
-            this.SalesOrderDetails = new List<SalesOrderDetail>();
-            this.SalesOrderHeaderSalesReasons = new List<SalesOrderHeaderSalesReason>();
+            SalesOrderDetails = new List<SalesOrderDetail>();
+            SalesOrderHeaderSalesReasons = new List<SalesOrderHeaderSalesReason>();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Geco.Common.SimpleMetadata
         /// </summary>
         public void Freeze()
         {
-            this.IsFrozen = true;
+            IsFrozen = true;
         }
 
         private void OnRemoveSchema(Schema schema)

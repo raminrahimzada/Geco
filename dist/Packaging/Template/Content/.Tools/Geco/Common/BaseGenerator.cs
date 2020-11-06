@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Geco.Common.Inflector;
+using Geco.Common.Util;
 
 namespace Geco.Common
 {
@@ -103,7 +105,7 @@ namespace Geco.Common
         /// </summary>
         protected void CommaIfNewLine()
         {
-            this.commaNewLine = true;
+            commaNewLine = true;
         }
 
         /// <summary>
@@ -111,7 +113,7 @@ namespace Geco.Common
         /// </summary>
         protected void NoCommaIfNewLine()
         {
-            this.commaNewLine = false;
+            commaNewLine = false;
         }
 
         /// <summary>
